@@ -1,0 +1,25 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.0.0/schema.json",
+  "name": "fdd881c88fe460b8d922",
+  "displayName": "Âge",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280,
+  "visualInteractions": [
+    {
+      "source": "5b744ece4080c856618e",
+      "target": "b3e2a2b09093493ec069",
+      "type": "DataFilter"
+    },
+    {
+      "source": "ff1cfa8e2e9492697a95",
+      "target": "204975b3f887562b2a26",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ff1cfa8e2e9492697a95",
+      "target": "2d4d53b0601a80f810f5",
+      "type": "NoFilter"
+    }
+  ]
+}

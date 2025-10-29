@@ -1,0 +1,25 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.0.0/schema.json",
+  "name": "7a0396c0e19c71c4cdc2",
+  "displayName": "Réceptionnaires",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280,
+  "visualInteractions": [
+    {
+      "source": "804524c4a08eb9d984d2",
+      "target": "d65abf498c0abcddba1a",
+      "type": "DataFilter"
+    },
+    {
+      "source": "c49f49b36774dc3a2d7a",
+      "target": "53ab9962291438504056",
+      "type": "DataFilter"
+    },
+    {
+      "source": "c49f49b36774dc3a2d7a",
+      "target": "804524c4a08eb9d984d2",
+      "type": "NoFilter"
+    }
+  ]
+}

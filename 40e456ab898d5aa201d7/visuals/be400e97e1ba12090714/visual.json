@@ -1,0 +1,39 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.2.0/schema.json",
+  "name": "be400e97e1ba12090714",
+  "position": {
+    "x": 0,
+    "y": 4.8896434634974533,
+    "z": 2000,
+    "height": 58.675721561969439,
+    "width": 649.100169779287,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "En moyenne, les \"pièces reçues - RDV à fixer\" sont ouverts depuis                 jours",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "12pt",
+                      "color": "#666666"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "parentGroupName": "e3e4b14d80d35b3e47a6"
+}

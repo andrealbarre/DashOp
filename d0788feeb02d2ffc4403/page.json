@@ -1,0 +1,21 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.0.0/schema.json",
+  "name": "d0788feeb02d2ffc4403",
+  "displayName": "Parking",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280,
+  "pageBinding": {
+    "name": "Pod",
+    "type": "Default",
+    "parameters": [],
+    "referenceScope": "CrossReport"
+  },
+  "visualInteractions": [
+    {
+      "source": "7c9a370647145bce860c",
+      "target": "3b92a13c1a003c7bee37",
+      "type": "NoFilter"
+    }
+  ]
+}

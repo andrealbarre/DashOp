@@ -1,0 +1,55 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.0.0/schema.json",
+  "name": "40e456ab898d5aa201d7",
+  "displayName": "DPOK",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280,
+  "visualInteractions": [
+    {
+      "source": "2772ecde2931e98acd4f",
+      "target": "cf2e3947a58c408d6acd",
+      "type": "NoFilter"
+    },
+    {
+      "source": "2772ecde2931e98acd4f",
+      "target": "be400e97e1ba12090714",
+      "type": "NoFilter"
+    },
+    {
+      "source": "2772ecde2931e98acd4f",
+      "target": "ac915cc3d8171bec1c8b",
+      "type": "NoFilter"
+    },
+    {
+      "source": "2772ecde2931e98acd4f",
+      "target": "b93ae7b10062f3a0870d",
+      "type": "NoFilter"
+    },
+    {
+      "source": "2772ecde2931e98acd4f",
+      "target": "b09780647b01b3a6b533",
+      "type": "NoFilter"
+    },
+    {
+      "source": "64be67fcd4aea02a8dd1",
+      "target": "26cf7ad04e86e0506c63",
+      "type": "NoFilter"
+    },
+    {
+      "source": "64be67fcd4aea02a8dd1",
+      "target": "b63ac20c0594e7bc0194",
+      "type": "NoFilter"
+    },
+    {
+      "source": "64be67fcd4aea02a8dd1",
+      "target": "ab8ae6a0be84b0e9cd90",
+      "type": "NoFilter"
+    },
+    {
+      "source": "64be67fcd4aea02a8dd1",
+      "target": "2772ecde2931e98acd4f",
+      "type": "NoFilter"
+    }
+  ]
+}
