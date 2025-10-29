@@ -1,0 +1,208 @@
+table '1 - Mesures pour visuels'
+	lineageTag: 4af885cc-0e8a-44cf-ac69-79259fe7e383
+
+	measure 'DT - Total' = count('1-DT'[Clé DT])
+		formatString: 0
+		displayFolder: 1 - Age\Mesures uniques
+		lineageTag: e8d1fa07-e74d-4bac-9879-55c94b6b0555
+
+	measure 'ATTENTE DECISION' = SUM('1-DT'[Attente de décision])
+		formatString: 0
+		displayFolder: 1 - Age\Statuts
+		lineageTag: 4e425ea2-217a-41f9-8f94-6936b3de4aaa
+
+		changedProperty = IsHidden
+
+	measure CAMPAGNE = sum('1-DT'[Campagne])
+		formatString: 0
+		displayFolder: 1 - Age\Statuts
+		lineageTag: e8dac2c8-adf8-4a44-9493-a794b774a5c7
+
+		changedProperty = IsHidden
+
+	measure 'EN COURS TRAVAUX' = sum('1-DT'[En cours de travaux])
+		formatString: 0
+		displayFolder: 1 - Age\Statuts
+		lineageTag: f1d96d9c-9bc2-4310-92e4-fb2778ca4ef4
+
+		changedProperty = IsHidden
+
+	measure LITIGE = SUM('1-DT'[Litige])
+		formatString: 0
+		displayFolder: 1 - Age\Statuts
+		lineageTag: 5f9e36e0-95fc-420c-a9bc-959369c71ae9
+
+		changedProperty = IsHidden
+
+	measure 'PIECE EN COMMANDE' = SUM('1-DT'[Correction pièce commmande])
+		formatString: 0
+		displayFolder: 1 - Age\Statuts
+		lineageTag: f520bf9e-84d9-4f5b-8baa-3de8817ffc99
+
+		changedProperty = IsHidden
+
+	measure 'PIECE RECUE' = sum('1-DT'[Pièce reçue])
+		formatString: 0
+		displayFolder: 1 - Age\Statuts
+		lineageTag: 91441beb-7767-4ee7-b624-9b9a0b8c17ed
+
+		changedProperty = IsHidden
+
+	measure 'SANS STATUT' = sum('1-DT'[Sans statut])
+		formatString: 0
+		displayFolder: 1 - Age\Statuts
+		lineageTag: 7f566ec5-6387-4b66-b32e-a13b1b743357
+
+		changedProperty = IsHidden
+
+	measure 'A Fermer' = sum('1-DT'[Attente facturation])+sum('1-DT'[A restituer])+sum('1-DT'[A fermer])
+		formatString: 0
+		displayFolder: 1 - Age\Statuts
+		lineageTag: fa32375f-344f-48a5-be5c-08df601b45ce
+
+		changedProperty = IsHidden
+
+	measure 'DT - à fixer' = calculate([DT - Total],'1-DT'[Correction RDV programmé]=0)
+		formatString: 0
+		displayFolder: 0 - Général\Nombre d'interventions planifiées
+		lineageTag: cdf6f0c3-3935-48d2-bf89-b44440031698
+
+	measure 'DT - Planifié' = calculate([DT - Total],'1-DT'[Correction RDV programmé]=1)
+		formatString: 0
+		displayFolder: 0 - Général\Nombre d'interventions planifiées
+		lineageTag: 97b9d246-2f11-4825-b90f-ec5629fc5b75
+
+	measure 'PR reçue - RDV à fixer' = calculate([PIECE RECUE],'1-DT'[Correction RDV programmé]=0)
+		formatString: 0
+		displayFolder: 2 - DPOK\Evolution planification DPOK
+		lineageTag: a2f1c2ed-0b52-454a-ae83-c898c37cb7d5
+
+	measure 'PR reçue - Rdv programmé' = calculate([PIECE RECUE],'1-DT'[Correction RDV programmé]=1)
+		formatString: 0
+		displayFolder: 2 - DPOK\Evolution planification DPOK
+		lineageTag: f8b19f52-7b88-45da-9335-d1ebd2c52289
+
+	measure 'Moyenne Age - Encours' = average('1-DT'[TO])
+		displayFolder: 1 - Age\Age moyen
+		lineageTag: de013080-7118-4bfb-b1d5-6bf49dfdab80
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Parking - DPOK - Voitures présentes' = calculate([Parking - Voiture présentes],'1-DT'[DPOK Corrigé]=1)
+		formatString: 0
+		displayFolder: 2 - DPOK\Mesures uniques
+		lineageTag: 0b9df038-b37a-4f75-92f3-68a03bfd1ba7
+
+	measure 'Parking - Voiture présentes' = CEILING(sum('1-DT'[Parking]),1)
+		formatString: 0
+		displayFolder: 4 - Parking
+		lineageTag: 743da177-fe43-4c3b-bb3b-fc4776ba9b8b
+
+	measure 'Parking - DPOK - Voitures présentes - PR reçue' = calculate([Parking - Voiture présentes],'1-DT'[Pièce reçue]=1)
+		formatString: 0
+		displayFolder: 2 - DPOK\Mesures uniques
+		lineageTag: b1f3189e-de0f-4eb1-be80-cecd6516be28
+
+	measure 'Moyenne Age - DPOK - piece recue - rdv à fixer' = CEILING(calculate([Moyenne Age - Encours], '1-DT'[Pièce reçue]=1,'1-DT'[Correction RDV programmé]=0),1)
+		displayFolder: 2 - DPOK\Mesures uniques
+		lineageTag: 2c5b456c-2232-45a6-bc4e-90f8f6cbf915
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'RDV - DT ouvertes ' = sum('2-Export-RDV'[DT Ouverte corrigé])
+		formatString: 0
+		displayFolder: 3 - Mecaplanning\Délai de RDV
+		lineageTag: 135ff40b-c366-40ea-8727-70c8e4c25651
+
+	measure 'RDV - PAS de DT' = calculate(countrows('2-Export-RDV'),'2-Export-RDV'[DT Ouverte corrigé]=0)
+		formatString: 0
+		displayFolder: 3 - Mecaplanning\Délai de RDV
+		lineageTag: d085dfde-7584-4328-8109-c28122405a0a
+
+	measure 'Interventions programmées' = calculate([SANS STATUT],'1-DT'[Correction RDV programmé]=1)
+		formatString: 0
+		displayFolder: 0 - Général\Mesures uniques
+		lineageTag: 9414bf6a-8817-4b03-8c03-3c23a653b730
+
+	measure 'Interventions à fixer' = calculate([SANS STATUT],'1-DT'[Correction RDV programmé]=0)
+		formatString: 0
+		displayFolder: 0 - Général\Mesures uniques
+		lineageTag: c5b779ee-50b0-42a1-b814-7dfc8ff482f5
+
+	measure 'Commandes à passer' = sum('1-DT'[Commandes à passer])
+		formatString: 0
+		displayFolder: 1 - Age\Statuts
+		lineageTag: 79643c8d-96c2-4569-b199-4b091f8fea14
+
+	measure 'Nbr de voitures - Doublons DT' = calculate(sum('1-DT'[Nbr de voitures]),'1-DT'[doublons immat]>1)
+		displayFolder: 0 - Général\Mesures uniques
+		lineageTag: 27bf2cc8-217a-44da-86a1-921098b228c1
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'FIABILITE -  Pièce en commande' = 1- ([Nombre erreur - Commande de pièce]/([PIECE EN COMMANDE]))
+		formatString: 0\ %;-0\ %;0\ %
+		displayFolder: 5 - Réceptionnaires\Mesures uniques
+		lineageTag: beb9d38b-9469-4897-9a42-23c19c2f5aec
+
+		changedProperty = IsHidden
+
+	measure 'FIABILITE - Piece reçue - Prog/à fixer' = 1-( [Nombre erreur -  Pieces recues - Prog/a fixer]/[PIECE RECUE])
+		formatString: 0\ %;-0\ %;0\ %
+		displayFolder: 5 - Réceptionnaires\Mesures uniques
+		lineageTag: 3d71e635-5720-43b1-b1ea-13e649e79164
+
+		changedProperty = IsHidden
+
+	measure DernièreDateExtraction =
+			
+			FORMAT(
+			    CALCULATE(
+			        MAX( '1-DT'[Date d'extraction] )
+			    ),
+			    "dd/mm/yyyy"
+			)
+		displayFolder: 5 - Réceptionnaires\Mesures uniques\Données pour fiabilité
+		lineageTag: 3ef2453b-865d-462e-b567-31533a0df9cf
+
+	measure 'Nombre erreur -  Pieces recues - Prog/a fixer' = sum('1-DT'[Taux d'erreur RDV programmé])
+		formatString: 0
+		displayFolder: 5 - Réceptionnaires\Mesures uniques\Données pour fiabilité
+		lineageTag: d56c86f5-7773-4015-a7fd-c97d96fd700f
+
+		changedProperty = IsHidden
+
+	measure 'Nombre erreur - Commande de pièce' = sum('1-DT'[taux d'Erreur CDE de pièce])
+		formatString: 0
+		displayFolder: 5 - Réceptionnaires\Mesures uniques\Données pour fiabilité
+		lineageTag: 75979e57-604b-4c98-b44e-8c43823d128d
+
+		changedProperty = IsHidden
+
+	measure Garantie = sum('1-DT'[Garantie])
+		formatString: 0
+		displayFolder: 1 - Age\Statuts
+		lineageTag: ddc98c54-8c46-4cb0-92e9-f4eb01e35db9
+
+	measure 'Pièces en commande programmées' = (calculate([PIECE EN COMMANDE],'1-DT'[Correction RDV programmé]=1))/[PIECE EN COMMANDE]
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		displayFolder: 2 - DPOK\Mesures uniques
+		lineageTag: efaabb74-656e-4a88-a3b1-f4b443b15a93
+
+	measure 'Nbr de RDV' = [RDV - DT ouvertes ]+[RDV - PAS de DT]
+		formatString: 0
+		displayFolder: 3 - Mecaplanning
+		lineageTag: 35a9fa32-9fc8-4330-af8d-c6ca187c8eeb
+
+	partition '1 - Mesures pour visuels' = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#"Colonne 1" = _t]),
+				    #"Type modifié" = Table.TransformColumnTypes(Source,{{"Colonne 1", type text}}),
+				    #"Colonnes supprimées" = Table.RemoveColumns(#"Type modifié",{"Colonne 1"})
+				in
+				    #"Colonnes supprimées"
+
+	annotation PBI_ResultType = Table
+

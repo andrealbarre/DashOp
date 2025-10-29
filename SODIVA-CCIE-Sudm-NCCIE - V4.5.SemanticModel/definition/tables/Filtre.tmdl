@@ -1,0 +1,49 @@
+table Filtre
+	lineageTag: fe627d78-1592-4ef6-a8ef-0efb0e6a6ff6
+
+	column Concession
+		dataType: string
+		lineageTag: 540d42a9-31ae-457f-8047-425d29a42d03
+		summarizeBy: none
+		sourceColumn: Concession
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'A l''atelier chrono'
+		dataType: int64
+		formatString: 0
+		lineageTag: 95ce7337-8dff-4a20-8538-5eb2a310b2cb
+		summarizeBy: none
+		sourceColumn: A l'atelier chrono
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Clé filtre '
+		dataType: string
+		lineageTag: ba784681-a4f5-4f7f-979f-fc31f070b6a1
+		summarizeBy: none
+		sourceColumn: "Clé filtre "
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Atelier '
+		dataType: string
+		lineageTag: 2908897e-6959-42b1-86ef-a141f4c06309
+		summarizeBy: none
+		sourceColumn: "Atelier "
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Filtre = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("G:\Drive partagés\Service MACS\02 - Projets & Performance\Groupe\Dash'Op\03 - PowerBI\données\Tables ref.xlsx"), null, true),
+				    Filtre_Sheet = Source{[Item="Filtre",Kind="Sheet"]}[Data],
+				    #"En-têtes promus" = Table.PromoteHeaders(Filtre_Sheet, [PromoteAllScalars=true]),
+				    #"Type modifié" = Table.TransformColumnTypes(#"En-têtes promus",{{"Concession", type text}, {"A l'atelier chrono", Int64.Type}, {"Clé filtre ", type text}, {"Atelier ", type text}})
+				in
+				    #"Type modifié"
+
+	annotation PBI_ResultType = Table
+

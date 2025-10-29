@@ -1,0 +1,39 @@
+table Concession
+	lineageTag: d5ee3f5f-110e-493b-a1c4-380a2123fdf3
+
+	column Concession
+		dataType: string
+		lineageTag: 5dce5614-e5ca-4a7c-b205-6f3a44d330f4
+		summarizeBy: none
+		sourceColumn: Concession
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Concession standard'
+		dataType: string
+		lineageTag: 63e51bcb-9953-4b93-bdfa-8f056bf4f400
+		summarizeBy: none
+		sourceColumn: Concession standard
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Concession = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("G:\Drive partagés\Service MACS\02 - Projets & Performance\Groupe\Dash'Op\03 - PowerBI\données\Tables ref.xlsx"), null, true),
+				    Concession_Sheet = Source{[Item="Concession",Kind="Sheet"]}[Data],
+				    #"Type modifié3" = Table.TransformColumnTypes(Concession_Sheet,{{"Column1", type text}, {"Column2", type text}}),
+				    #"Type modifié2" = Table.TransformColumnTypes(#"Type modifié3",{{"Column1", type text}, {"Column2", type text}}),
+				    #"Type modifié" = Table.TransformColumnTypes(#"Type modifié2",{{"Column1", type text}, {"Column2", type text}}),
+				    #"En-têtes promus" = Table.PromoteHeaders(#"Type modifié", [PromoteAllScalars=true]),
+				    #"Type modifié1" = Table.TransformColumnTypes(#"En-têtes promus",{{"Concession", type text}, {"Concession standard", type text}})
+				in
+				    #"Type modifié1"
+
+	annotation PBI_ResultType = Table
+

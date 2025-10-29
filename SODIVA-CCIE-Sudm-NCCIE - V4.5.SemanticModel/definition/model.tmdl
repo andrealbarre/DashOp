@@ -1,0 +1,52 @@
+model Model
+	culture: fr-FR
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: fr-FR
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+/// Erreurs dans les requêtes qui ont été chargées sur 08/09/2025 09:46:52.
+queryGroup 'Erreurs des requêtes – 08/09/2025 09:46:52'
+
+	annotation PBI_QueryGroupOrder = 0
+
+/// Erreurs dans les requêtes qui ont été chargées sur 13/10/2025 16:52:31.
+queryGroup 'Erreurs des requêtes – 13/10/2025 16:52:31'
+
+	annotation PBI_QueryGroupOrder = 1
+
+annotation PBI_QueryOrder = ["1-DT","2-Export-RDV","3-Reliquats (pièce en CDE)","5-Atelier","4-Satut","DT sans doublon","Export-RDV","Concession","1 - Mesures pour visuels","CS","Filtre","Meca","Erreurs dans Export-RDV","Erreurs dans Export-RDV (2)"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_ProTooling = ["DaxQueryView_Desktop","DevMode"]
+
+ref table DateTableTemplate_c90d3cb1-856a-4d1e-ba62-0113ec10d06a
+ref table 0-Date
+ref table LocalDateTable_720e9c47-fb29-4b15-bd63-af5538f4dc83
+ref table 1-DT
+ref table 2-Export-RDV
+ref table '3-Reliquats (pièce en CDE)'
+ref table 5-Atelier
+ref table 4-Satut
+ref table 'DT sans doublon'
+ref table LocalDateTable_5275ef20-67e9-4904-b4c5-e321e2fab0ea
+ref table Export-RDV
+ref table LocalDateTable_dadc133d-5d32-4185-90cb-93eb238b2d16
+ref table LocalDateTable_2609a25d-4cf4-455f-8f09-ddb08dec5857
+ref table LocalDateTable_31b01a68-1c89-432a-bb93-1aa4adc00321
+ref table LocalDateTable_b95a92f6-7c4e-4a3d-906d-1d93a1e60641
+ref table LocalDateTable_92731ea0-f09c-4a1f-bf31-0c75a5dd9c65
+ref table LocalDateTable_30dc1597-a30c-49c4-b1c4-3add830f6a85
+ref table LocalDateTable_af0b8a6a-887c-4aa3-af12-0d6daf691b85
+ref table LocalDateTable_b3d24d93-60ee-4612-8711-a7aa1ccc63c1
+ref table Concession
+ref table LocalDateTable_bca7dd80-9ec3-4319-a3be-b041387f7f82
+ref table '1 - Mesures pour visuels'
+ref table CS
+ref table Filtre
+ref table Meca
+
+ref cultureInfo fr-FR
+

@@ -1,0 +1,190 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 186499.17643265898
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 619.98149534480888,
+            "y": 186148.61085485946
+          },
+          "nodeIndex": "0-Date",
+          "nodeLineageTag": "38e58dbd-9208-4e05-ac94-9878d20ec944",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 1245.3993847472809,
+            "y": 186737.74985728861
+          },
+          "nodeIndex": "1-DT",
+          "nodeLineageTag": "00282d57-b66c-43d1-a487-5885dede98ef",
+          "size": {
+            "height": 342.85714285714283,
+            "width": 234
+          },
+          "zIndex": 8
+        },
+        {
+          "location": {
+            "x": 393.28571619306251,
+            "y": 187004.70357036378
+          },
+          "nodeIndex": "2-Export-RDV",
+          "nodeLineageTag": "0cdf7402-40d2-41c3-b127-442ac33e163b",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 9
+        },
+        {
+          "location": {
+            "x": 1250.7454573069404,
+            "y": 187143.17071928974
+          },
+          "nodeIndex": "3-Reliquats (pièce en CDE)",
+          "nodeLineageTag": "13402369-984d-461a-929f-51acd7700113",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 1193.8988870889291,
+            "y": 186435.34364522895
+          },
+          "nodeIndex": "4-Satut",
+          "nodeLineageTag": "abc2359f-327a-4851-bc4a-20cb55e15898",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 398.709328204249,
+            "y": 187591.47405802298
+          },
+          "nodeIndex": "5-Atelier",
+          "nodeLineageTag": "63f099a5-8e9b-423d-99e2-c9394f8f054a",
+          "size": {
+            "height": 314,
+            "width": 234
+          },
+          "zIndex": 11
+        },
+        {
+          "location": {
+            "x": 62.512171186459483,
+            "y": 186623.46799771662
+          },
+          "nodeIndex": "DT sans doublon",
+          "nodeLineageTag": "a5d95fc6-90b9-49d3-a43a-6af9c55e41a7",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 6
+        },
+        {
+          "location": {
+            "x": 1715.1428571428564,
+            "y": 187394.73928464949
+          },
+          "nodeIndex": "Export-RDV",
+          "nodeLineageTag": "72227627-6486-4cb5-9d1c-896001711100",
+          "size": {
+            "height": 296,
+            "width": 234
+          },
+          "zIndex": 7
+        },
+        {
+          "location": {
+            "x": 1829.7550384440631,
+            "y": 186156.34204668162
+          },
+          "nodeIndex": "Concession",
+          "nodeLineageTag": "d5ee3f5f-110e-493b-a1c4-380a2123fdf3",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 10
+        },
+        {
+          "location": {
+            "x": 1483.1428571428569,
+            "y": 186315.55378438532
+          },
+          "nodeIndex": "CS",
+          "nodeLineageTag": "4cd170e6-1dd9-4fb0-b9fa-b7a7e07fdda0",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 12
+        },
+        {
+          "location": {
+            "x": 1955.673942234193,
+            "y": 186656.48319371219
+          },
+          "nodeIndex": "Filtre",
+          "nodeLineageTag": "fe627d78-1592-4ef6-a8ef-0efb0e6a6ff6",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 4271.1428571428569,
+            "y": 159394.3134213835
+          },
+          "nodeIndex": "1 - Mesures pour visuels",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 72.419547696029667,
+            "y": 187083.36343330637
+          },
+          "nodeIndex": "Meca",
+          "nodeLineageTag": "d6fcd1cb-8767-40d1-886f-44470135b34e",
+          "size": {
+            "height": 176.94085450249258,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "Toutes les tables",
+      "zoomValue": 55.599173134923227,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "Toutes les tables",
+  "defaultDiagram": "Toutes les tables"
+}

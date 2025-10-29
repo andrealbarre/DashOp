@@ -1,0 +1,532 @@
+table 1-DT
+	lineageTag: 00282d57-b66c-43d1-a487-5885dede98ef
+
+	column 'No DT'
+		dataType: string
+		lineageTag: 20306605-f966-4430-a15d-77f1b1f0b309
+		summarizeBy: none
+		sourceColumn: No DT
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column IMMAT
+		dataType: string
+		lineageTag: e616cfe7-444a-498d-9150-1fd3592d6f52
+		summarizeBy: none
+		sourceColumn: IMMAT
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Date Ouverture DT'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 0c3ee9f5-7687-4c92-8588-e6b415e2853f
+		summarizeBy: none
+		sourceColumn: Date Ouverture DT
+
+		variation Variation
+			isDefault
+			relationship: 844a5e1b-147b-4fa3-a8e2-e20189823dff
+			defaultHierarchy: LocalDateTable_af0b8a6a-887c-4aa3-af12-0d6daf691b85.'Hiérarchie de dates'
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Statut en Cours'
+		dataType: string
+		lineageTag: ccf3cb20-6a9d-4e67-9b23-7749a5a41897
+		summarizeBy: none
+		sourceColumn: Statut en Cours
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'CCS (code)'
+		dataType: string
+		lineageTag: 1af95c21-49ed-46a1-8e70-90b281a6a5ee
+		summarizeBy: none
+		sourceColumn: CCS (code)
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column TO = DATEDIFF('1-DT'[Date Ouverture DT].[Date],'1-DT'[Date d'extraction],DAY)
+		lineageTag: d1f0405f-7d58-41c8-a8d2-6299b0d478be
+		summarizeBy: sum
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Catégorie TO' = IF('1-DT'[TO]<1,"0",IF('1-DT'[TO]=1,"1",IF('1-DT'[TO]=2,"2",IF('1-DT'[TO]=3,"3",IF('1-DT'[TO]<=7&&'1-DT'[TO]>3,"4",IF('1-DT'[TO]<=30&&'1-DT'[TO]>7,"7",IF('1-DT'[TO]<=60&&'1-DT'[TO]>30,"30",IF('1-DT'[TO]<=90&&'1-DT'[TO]>60,"60",IF('1-DT'[TO]<=180&&'1-DT'[TO]>90,"90",IF('1-DT'[TO]>180,"180"))))))))))
+		dataType: int64
+		formatString: 0
+		lineageTag: 7456232a-b364-42c2-af78-e248e9645e9f
+		summarizeBy: sum
+
+		changedProperty = DataType
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'DATE EXTRAC FORMAT TXT'
+		dataType: string
+		lineageTag: 5a065419-94e3-402a-b170-e26f40a62dfb
+		summarizeBy: none
+		sourceColumn: DATE EXTRAC FORMAT TXT
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column CONCESSION
+		dataType: string
+		lineageTag: 0180d950-1440-4490-86b5-fe9b2bd4f30f
+		summarizeBy: none
+		sourceColumn: CONCESSION
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'IMMAT PROPRE'
+		dataType: string
+		lineageTag: 0f6ccc17-b99a-497b-bff9-8047f8f410dc
+		summarizeBy: none
+		sourceColumn: IMMAT PROPRE
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Clé DT'
+		dataType: string
+		lineageTag: e3ee0d0c-42f4-4853-9ecb-16c40f18c371
+		summarizeBy: none
+		sourceColumn: Clé DT
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Clé IMMAT'
+		dataType: string
+		lineageTag: 1b5dde15-00db-41dc-826b-adad228ada1a
+		summarizeBy: none
+		sourceColumn: Clé IMMAT
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Statut STD' = RELATED('4-Satut'[Statut standard])
+		lineageTag: 925a7e75-b2cd-452e-a280-cba27d967a75
+		summarizeBy: none
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Véhicule présent' = RELATED('4-Satut'[Véhicule présent])
+		formatString: 0
+		lineageTag: bb7bcda3-df93-4e2e-8e62-d18092fff806
+		summarizeBy: sum
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'RDV programmé' = RELATED('4-Satut'[Rdv programmé])
+		formatString: 0
+		lineageTag: fa3e6002-7bea-4326-9a13-3f8789b28f21
+		summarizeBy: sum
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Pièce en commande' = IF('1-DT'[Statut STD]="Pièce en commande",1,0)
+		formatString: 0
+		lineageTag: f6ce1c22-f0af-480a-a1f4-d40f8705efd0
+		summarizeBy: sum
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'A restituer' = IF(AND('1-DT'[Statut STD]="A restituer",'1-DT'[Correction pièce commmande]=0),1,0)
+		formatString: 0
+		lineageTag: 762dcfb8-6498-4d46-9379-73617e91bb78
+		summarizeBy: sum
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Attente de décision' = IF(AND('1-DT'[Statut STD]="Attente de décision",'1-DT'[Correction pièce commmande]=0),1,0)
+		formatString: 0
+		lineageTag: 296091f5-0801-4e22-9a84-f9a0903a622d
+		summarizeBy: sum
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Pièce reçue' = IF(AND('1-DT'[Statut STD]="Pièce reçue",'1-DT'[Correction pièce commmande]=0),1,0)
+		formatString: 0
+		lineageTag: 13d33b74-7c53-4f48-afda-9a807ebc6f47
+		summarizeBy: sum
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sans statut' = IF(AND('1-DT'[Statut STD]="Sans statut",'1-DT'[Correction pièce commmande]=0),1,0)
+		formatString: 0
+		lineageTag: 9d7e8baa-ab9c-4af2-970c-80e8b12a5134
+		summarizeBy: sum
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Attente facturation' = IF(AND('1-DT'[Statut STD]="A facturer",'1-DT'[Correction pièce commmande]=0),1,0)
+		formatString: 0
+		lineageTag: 0ac3112d-f9d2-4215-aab2-f488daded695
+		summarizeBy: sum
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'En cours de travaux' = IF(AND('1-DT'[Statut STD]="En cours de travaux",'1-DT'[Correction pièce commmande]=0),1,0)
+		formatString: 0
+		lineageTag: ec1fa0bf-9ffc-402c-a24e-2b2cbad67b67
+		summarizeBy: sum
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Correction pièce commmande' = IF(RELATED('3-Reliquats (pièce en CDE)'[Clé DT])="",0,1)
+		formatString: 0
+		lineageTag: e3f039bc-25d5-4909-aad9-8ff143c96cf0
+		summarizeBy: sum
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Correction RDV programmé' = IF(RELATED('Export-RDV'[Clé Immat])="",0,1)
+		formatString: 0
+		lineageTag: d10c79b5-4a81-4c1d-ba3e-3acacf9b8571
+		summarizeBy: none
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'taux d''Erreur CDE de pièce' = IF(AND('1-DT'[Correction pièce commmande]=1,'1-DT'[Pièce en commande]=0),1,0)
+		formatString: 0
+		lineageTag: 5f06fa10-f8a7-4bb0-bb8e-91eb4d262cc5
+		summarizeBy: sum
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Taux d''erreur RDV programmé' = IF('1-DT'[Statut STD]="Pièce reçue",IF(AND('1-DT'[RDV programmé]=1,'1-DT'[Correction RDV programmé]=0),1,IF(AND('1-DT'[RDV programmé]=0,'1-DT'[Correction RDV programmé]=1),1,0)),0)
+		formatString: 0
+		lineageTag: 6a738dc4-cffe-4eea-8209-0e8c3c9085d3
+		summarizeBy: sum
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Date d''extraction'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 666e8fe5-4329-44be-8dfe-732e8e5ee955
+		summarizeBy: none
+		sourceColumn: Date d'extraction
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Litige = IF(and('1-DT'[Statut STD]="Litige",'1-DT'[Correction pièce commmande]=0),1,0)
+		formatString: 0
+		lineageTag: bf7a876b-d8c1-4204-9017-d178a8f05b4c
+		summarizeBy: sum
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Campagne = IF(and('1-DT'[Statut STD]="Campagne",'1-DT'[Correction pièce commmande]=0),1,0)
+		formatString: 0
+		lineageTag: e00fd8dc-5216-4167-a31a-f4bb12b28d1f
+		summarizeBy: sum
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Clé Statut'
+		dataType: string
+		lineageTag: 53e1be3a-b748-4929-ac3c-5cf823ef7714
+		summarizeBy: none
+		sourceColumn: Clé Statut
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'RDV AU CHRONO' = related( '5-Atelier'[RDV au chrono])
+		lineageTag: aa79cfce-2341-4016-9afd-352673b93804
+		summarizeBy: none
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'DATE de RDV' = if('1-DT'[Correction RDV programmé]=1,related('Export-RDV'[DATE ARR.]))
+		formatString: General Date
+		lineageTag: 4a294850-9b65-4030-8d79-21059ba44a52
+		summarizeBy: none
+
+		variation Variation
+			isDefault
+			relationship: 376c1b13-e022-4f29-a434-95dcb36086c9
+			defaultHierarchy: LocalDateTable_bca7dd80-9ec3-4319-a3be-b041387f7f82.'Hiérarchie de dates'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ouverte au CHRONO' = related( CS[Ouverte au chrono])
+		formatString: 0
+		lineageTag: 528f7488-ce3a-4704-8b10-3ccc412e1541
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Commandes à passer' = IF(AND('1-DT'[Correction pièce commmande]=0,'1-DT'[Pièce en commande]=1),1,0)
+		formatString: 0
+		lineageTag: c7615b0e-8db4-4a4c-8778-d7c0a5765978
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Clé immat 2 ateliers' = '1-DT'[Clé IMMAT]& "-" & '1-DT'[A l'atelier CHRONO]
+		lineageTag: 35c63ca8-b29a-4e72-83bd-3ba70cbbf589
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'doublons immat 2 ateliers' = COUNTROWS(FILTER(  '1-DT','1-DT'[Clé immat 2 ateliers] = EARLIER('1-DT'[Clé immat 2 ateliers])))
+		formatString: 0
+		lineageTag: 60546307-f1a4-4c40-a64d-a6f68b061651
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'doublons immat' = COUNTROWS(FILTER(  '1-DT','1-DT'[Clé IMMAT] = EARLIER('1-DT'[Clé IMMAT])))
+		formatString: 0
+		lineageTag: 65168f85-47b1-4f1d-84ac-3a8d8c049fd0
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'immat deux ateliers' = if(and('1-DT'[doublons immat]<>1,'1-DT'[doublons immat 2 ateliers]<'1-DT'[doublons immat]),1,0)
+		formatString: 0
+		lineageTag: d969fa09-be98-47f0-a12b-63e1a4b5a30a
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'A l''atelier CHRONO' = if('1-DT'[RDV AU CHRONO]=1,1,if('1-DT'[Ouverte au CHRONO]=1&& '1-DT'[Correction RDV programmé]=0,1,0))
+		formatString: 0
+		lineageTag: fcec6cd9-80bd-4956-98ae-d321056fa7b1
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Statut STD corrigé' = if('1-DT'[Correction pièce commmande]=0,if('1-DT'[Statut STD]="Pièce en commande","Commande à passer",'1-DT'[Statut STD]),"Pièce en commande")
+		lineageTag: f4a5a22e-3a0c-4f34-9dd5-a7b1989f2ae8
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Transferts entre atelier et chrono' = if('1-DT'[Ouverte au CHRONO]=0&& '1-DT'[RDV AU CHRONO]=1,1,if('1-DT'[Ouverte au CHRONO]=1&&'1-DT'[RDV AU CHRONO]=0&&'1-DT'[Correction RDV programmé]=1,1,0))
+		formatString: 0
+		lineageTag: c47629b0-0716-4be7-aed3-9495e31a9f2c
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Nbr de voitures' = if('1-DT'[doublons immat]=1,1,1/'1-DT'[doublons immat])
+		lineageTag: 700f3e6d-9cef-427f-9a16-638161ecdd52
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DPOK = related('4-Satut'[DPOK])
+		lineageTag: ad4a37dc-5fd1-4a34-94e7-cdc3da7b3a35
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'clé parking' = '1-DT'[Clé IMMAT]& "-" & '1-DT'[Véhicule présent]
+		lineageTag: 0747b61f-bd15-4335-b68b-e5f7c6476b8e
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'doublons immat parking' = COUNTROWS(FILTER(  '1-DT','1-DT'[clé parking] = EARLIER('1-DT'[clé parking])))
+		formatString: 0
+		lineageTag: b486e2b2-4704-40af-a6cf-b8eeefd3a0e4
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column Parking = if('1-DT'[Véhicule présent]=1,if('1-DT'[Nbr de voitures]=1,1,if('1-DT'[doublons immat parking]=1,1,'1-DT'[Nbr de voitures])))
+		lineageTag: f67cc14f-e83e-4bd7-9c63-02c512c8ba90
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'A fermer' = if(and('1-DT'[Statut STD]="A fermer",'1-DT'[Correction pièce commmande]=0),1,0)
+		formatString: 0
+		lineageTag: 4da5c117-531a-491e-9191-231c5169c1fb
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'clé filtre' = '1-DT'[CONCESSION]&'1-DT'[A l'atelier CHRONO]
+		lineageTag: e7ed867c-d728-441d-ac1d-47625b3d49f4
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Périmètre = related(Filtre[Atelier ])
+		lineageTag: 33b4dbae-b89b-4e54-9bad-ddcb5027fb28
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Planification = if('1-DT'[Correction RDV programmé]=0,"Non planifiés","Interventions programmées")
+		lineageTag: c89d45ed-ea9c-46ec-925d-971d6d5a1cc5
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Client Facturé'
+		dataType: string
+		lineageTag: 86cbbd92-22a3-4e83-83dc-8e33c0075695
+		summarizeBy: none
+		sourceColumn: Client Facturé
+
+		annotation SummarizationSetBy = Automatic
+
+	column Garantie = IF(AND('1-DT'[Statut STD]="Garantie",'1-DT'[Correction pièce commmande]=0),1,0)
+		formatString: 0
+		lineageTag: c78f54d8-c629-4d76-be6f-e6962a31299a
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'OR du jour' = if('1-DT'[Catégorie TO]=0,"Ouvert ce jour","Ouvert avant")
+		lineageTag: 7f6da8b5-9a78-47ba-a01d-bfbd4d9a8fc3
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'DPOK Corrigé' = ```
+			
+			IF (
+			    '1-DT'[DPOK] = 0
+			        && (
+			            '1-DT'[Correction pièce commmande] = 1
+			            || '1-DT'[Commandes à passer] = 1
+			            || '1-DT'[Pièce reçue] = 1
+			        ),
+			    1,
+			    '1-DT'[DPOK]
+			)
+			
+			```
+		formatString: 0
+		lineageTag: 99a38d5d-fdbc-4cd1-b2d0-4394e06af7c1
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Véhicule présent corrigé' =
+			
+			VAR currentImmat = '1-DT'[Clé IMMAT]
+			VAR presentCount =
+			    CALCULATE(
+			        MAX('1-DT'[Véhicule présent]),
+			        FILTER('1-DT', '1-DT'[Clé IMMAT] = currentImmat)
+			    )
+			RETURN
+			if(presentCount=1,"Oui","Non")
+		lineageTag: d19b88b9-e274-4fea-b1a0-40fda203eb7b
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Vh present 2 at' = ```
+			if(('1-DT'[immat deux ateliers]=1) && ('1-DT'[doublons immat]>1) && ('1-DT'[Véhicule présent corrigé]="Oui"),"Au deux",'1-DT'[Périmètre]) 
+			```
+		lineageTag: 23431099-0150-4e80-870e-c925341d7758
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 1-DT = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("G:\Drive partagés\Service MACS\02 - Projets & Performance\Groupe\Dash'Op\03 - PowerBI\données\DT en Cours - compile.xlsm"), null, true),
+				    DataImport_Sheet = Source{[Item="DataImport",Kind="Sheet"]}[Data],
+				    #"En-têtes promus" = Table.PromoteHeaders(DataImport_Sheet, [PromoteAllScalars=true]),
+				    #"Type modifié4" = Table.TransformColumnTypes(#"En-têtes promus",{{"Date d'extraction", type date}}),
+				    #"Colonnes supprimées" = Table.RemoveColumns(#"Type modifié4",{"Année DT", "VIN", "Date Prévue Restitution", "Code OPB"}),
+				    #"Type modifié1" = Table.TransformColumnTypes(#"Colonnes supprimées",{{"CONCESSION", type text}, {"Date Ouverture DT", type date}}),
+				    #"Caractères supprimés insérés" = Table.AddColumn(#"Type modifié1", "IMMAT PROPRE", each Text.Remove([IMMAT], {"-"}), type text),
+				    #"Duplication de la colonne" = Table.DuplicateColumn(#"Caractères supprimés insérés", "Date d'extraction", "Date extraction - Copier"),
+				    #"Type modifié2" = Table.TransformColumnTypes(#"Duplication de la colonne",{{"Date extraction - Copier", type text}}),
+				    #"Colonnes renommées" = Table.RenameColumns(#"Type modifié2",{{"Date extraction - Copier", "DATE EXTRAC FORMAT TXT"}}),
+				    #"Type modifié3" = Table.TransformColumnTypes(#"Colonnes renommées",{{"No DT", type text}}),
+				    #"Personnalisée ajoutée1" = Table.AddColumn(#"Type modifié3", "Clé DT", each [No DT]&"-"&[CONCESSION]&"-"&[DATE EXTRAC FORMAT TXT]),
+				    #"Personnalisée ajoutée2" = Table.AddColumn(#"Personnalisée ajoutée1", "Clé IMMAT", each [IMMAT PROPRE]&"-"&[CONCESSION]&"-"&[DATE EXTRAC FORMAT TXT]),
+				    #"Valeur remplacée" = Table.ReplaceValue(#"Personnalisée ajoutée2",null,"Sans statut",Replacer.ReplaceValue,{"Statut en Cours"}),
+				    #"Lignes filtrées" = Table.SelectRows(#"Valeur remplacée", each [Clé IMMAT] <> null and [Clé IMMAT] <> ""),
+				    #"Personnalisée ajoutée" = Table.AddColumn(#"Lignes filtrées", "Clé Statut", each [CONCESSION]&"-"&[Statut en Cours]),
+				    #"Valeur remplacée1" = Table.ReplaceValue(#"Personnalisée ajoutée","ABAAL","Adriane BAAL",Replacer.ReplaceText,{"CCS (code)"}),
+				    #"Valeur remplacée2" = Table.ReplaceValue(#"Valeur remplacée1","FRANCOISE CLOE","Françoise CLOE",Replacer.ReplaceText,{"CCS (code)"}),
+				    #"Valeur remplacée3" = Table.ReplaceValue(#"Valeur remplacée2","GENEVIEVE Mirlène","Mirlène GENEVIEVE",Replacer.ReplaceText,{"CCS (code)"})
+				in
+				    #"Valeur remplacée3"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

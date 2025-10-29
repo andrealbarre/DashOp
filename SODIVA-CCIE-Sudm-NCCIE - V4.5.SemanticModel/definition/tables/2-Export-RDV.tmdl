@@ -1,0 +1,336 @@
+table 2-Export-RDV
+	lineageTag: 0cdf7402-40d2-41c3-b127-442ac33e163b
+
+	column ATELIER
+		dataType: string
+		lineageTag: ed7eba96-797c-431a-bae1-5552cbb510d5
+		summarizeBy: none
+		sourceColumn: ATELIER
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Clé Immat'
+		dataType: string
+		lineageTag: 885e2fb4-8acd-4456-b80a-6bac6dc7c87f
+		summarizeBy: none
+		sourceColumn: Clé Immat
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ATELIER STD' = RELATED('5-Atelier'[Atelier standard])
+		lineageTag: dfe2fce1-b078-470a-9e69-77462881c75b
+		summarizeBy: none
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'DT Ouverte' = IF(related('DT sans doublon'[Clé IMMAT])="",0,1)
+		formatString: 0
+		lineageTag: 8e06d854-79aa-475f-a925-7612fdcf1507
+		summarizeBy: sum
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Date d''extraction'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 9acfcc8f-284b-4fd2-a023-6222d2bbedcd
+		summarizeBy: none
+		sourceColumn: Date d'extraction
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'LAST UTILISATEUR'
+		dataType: string
+		lineageTag: 7488d2ab-0b65-466c-abc1-865b540f5835
+		summarizeBy: none
+		sourceColumn: LAST UTILISATEUR
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'PREMIER UTILISATEUR'
+		dataType: string
+		lineageTag: 0d540368-1e5f-43ab-b6cd-162e578cb126
+		summarizeBy: none
+		sourceColumn: PREMIER UTILISATEUR
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column RÉCEPTION
+		dataType: string
+		lineageTag: 9412c697-6958-479b-9938-f69222c5a3e8
+		summarizeBy: none
+		sourceColumn: RÉCEPTION
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'N° CLIENT'
+		dataType: string
+		lineageTag: 427b97e7-39c9-4bb3-9699-ead2fd3d5d25
+		summarizeBy: none
+		sourceColumn: N° CLIENT
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'NOM CLIENT'
+		dataType: string
+		lineageTag: a0620440-f144-4251-a9a0-dc1342bc4817
+		summarizeBy: none
+		sourceColumn: NOM CLIENT
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'EMAIL CLIENT'
+		dataType: string
+		lineageTag: d258828e-21a9-4836-8aaa-5e413c5feab7
+		summarizeBy: none
+		sourceColumn: EMAIL CLIENT
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'DATE ARR.'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: ce62c19b-cd93-432e-94cf-b66f3a8029db
+		summarizeBy: none
+		sourceColumn: DATE ARR.
+
+		variation Variation
+			isDefault
+			relationship: fbf93055-3eff-46f2-a0fb-4ce1f12dab77
+			defaultHierarchy: LocalDateTable_dadc133d-5d32-4185-90cb-93eb238b2d16.'Hiérarchie de dates'
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'HEURE ARR.'
+		dataType: double
+		lineageTag: eb6563b8-02a4-4a86-bfe9-50608a9f472b
+		summarizeBy: sum
+		sourceColumn: HEURE ARR.
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'HEURE REST.'
+		dataType: double
+		lineageTag: ca071963-9a1d-42b1-9f16-3d1e88d0256d
+		summarizeBy: sum
+		sourceColumn: HEURE REST.
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column IMMATRICULATION
+		dataType: string
+		lineageTag: 311430fc-6021-4f5f-aa15-35141e6ed65f
+		summarizeBy: none
+		sourceColumn: IMMATRICULATION
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'DATE DE MEC'
+		dataType: string
+		lineageTag: 325c3890-f8e8-4967-8eb7-6e751c80fdb7
+		summarizeBy: none
+		sourceColumn: DATE DE MEC
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'DATE DE CRÉATION RDV'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: c199b2e6-2f59-41de-9691-e57e6ea3d32b
+		summarizeBy: none
+		sourceColumn: DATE DE CRÉATION RDV
+
+		variation Variation
+			isDefault
+			relationship: c850f48a-1105-41db-9191-2c8617ea358a
+			defaultHierarchy: LocalDateTable_2609a25d-4cf4-455f-8f09-ddb08dec5857.'Hiérarchie de dates'
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'NATURE RDV'
+		dataType: string
+		lineageTag: 0a17d743-b28f-4bf9-8701-692eb3e89ad4
+		summarizeBy: none
+		sourceColumn: NATURE RDV
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column INDICATEUR
+		dataType: string
+		lineageTag: 03a20af0-1a95-4c72-932f-8364998df454
+		summarizeBy: none
+		sourceColumn: INDICATEUR
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Date extraction  TXT'
+		dataType: string
+		lineageTag: ee8d64ce-c662-4aa1-8d3b-0fb7506fcf4e
+		summarizeBy: none
+		sourceColumn: Date extraction  TXT
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Clé Atelier'
+		dataType: string
+		lineageTag: 8b6a087f-c34e-4ee0-9739-aabe504fbdd7
+		summarizeBy: none
+		sourceColumn: Clé Atelier
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column CONCESSION
+		dataType: string
+		lineageTag: 92f9fb80-b376-4516-9bbe-07775e8ff84d
+		summarizeBy: none
+		sourceColumn: CONCESSION
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'CS STD' = related( CS[Cs std])
+		lineageTag: 929aebc5-c3d6-4230-9180-8d9572bac8be
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'CS Meca' = related(Meca[RÉCEPTION])
+		lineageTag: 90aab7da-6f93-45ca-9221-bdb361db7365
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'DATE ARR. - format TXT'
+		dataType: string
+		lineageTag: 721384e0-e1f2-41c6-b925-ae58d57253bf
+		summarizeBy: none
+		sourceColumn: DATE ARR. - format TXT
+
+		annotation SummarizationSetBy = Automatic
+
+	column doublon
+		dataType: string
+		lineageTag: 28773fe3-c6e1-49d2-9ac6-14b16569edbf
+		summarizeBy: none
+		sourceColumn: doublon
+
+		annotation SummarizationSetBy = Automatic
+
+	column Compteur = VAR K = '2-Export-RDV'[Clé Immat] RETURN RANKX ( FILTER ( '2-Export-RDV','2-Export-RDV'[Clé Immat] = K ), VALUE ( FORMAT ( '2-Export-RDV'[DATE ARR.], "yyyymmdd" ) ) * 1000000 + VALUE ( FORMAT ( '2-Export-RDV'[Date d'extraction], "yyyymmdd" ) ), , ASC, DENSE )
+		formatString: 0
+		lineageTag: 4dd772b7-4aa9-47ea-851a-b88772efa309
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'clé immat sans doublon' = if('2-Export-RDV'[Compteur]=1,'2-Export-RDV'[IMMATRICULATION] &"-"&'2-Export-RDV'[CONCESSION]&"-"&'2-Export-RDV'[Date d'extraction],'2-Export-RDV'[IMMATRICULATION]&"-"&'2-Export-RDV'[CONCESSION]&"-"&'2-Export-RDV'[Date d'extraction]&"-"&'2-Export-RDV'[Compteur])
+		lineageTag: 2f328a78-7eb5-4fb9-bd09-dcc4e363c96f
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'DT Ouverte corrigé' = ```
+			
+			VAR g = '2-Export-RDV'[Clé Immat]
+			VAR any1_in_group =
+			    MAXX (
+			        FILTER ( ALL ( '2-Export-RDV'), '2-Export-RDV'[Clé Immat] = g ),
+			        VALUE ( '2-Export-RDV'[DT Ouverte] )   -- 0/1 ; VALUE au cas où ce soit du texte
+			    )
+			RETURN
+			IF (
+			    '2-Export-RDV'[Compteur] = 1,
+			    VALUE ( '2-Export-RDV'[DT Ouverte] ),
+			    any1_in_group
+			)
+			
+			```
+		lineageTag: c497c3db-a5a3-4814-91dc-77b5ef3890b2
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 2-Export-RDV = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("G:\Drive partagés\Service MACS\02 - Projets & Performance\Groupe\Dash'Op\03 - PowerBI\données\compile lstRdvs.xlsm"), null, true),
+				    lstRdvs_Sheet = Source{[Item="lstRdvs",Kind="Sheet"]}[Data],
+				    #"En-têtes promus1" = Table.PromoteHeaders(lstRdvs_Sheet, [PromoteAllScalars=true]),
+				    #"Type modifié2" = Table.TransformColumnTypes(#"En-têtes promus1",{{"Date d'extraction", type date}, {"ATELIER", type text}, {"LAST UTILISATEUR", type text}, {"PREMIER UTILISATEUR", type text}, {"RÉCEPTION", type text}, {"N° CLIENT", type any}, {"NOM CLIENT", type text}, {"TÉL. CLIENT", Int64.Type}, {"EMAIL CLIENT", type text}, {"DATE ARR.", type date}, {"HEURE ARR.", type number}, {"DATE REST.", type date}, {"HEURE REST.", type number}, {"IMMATRICULATION", type text}, {"KMS", Int64.Type}, {"V.I.N.", type text}, {"MARQUE", type text}, {"MODÈLE", type text}, {"DATE DE MEC", type any}, {"N° RDV", Int64.Type}, {"O.R.", Int64.Type}, {"DATE DE CRÉATION RDV", type date}, {"INTERVENTION", type text}, {"DURÉE INTERVENTION", type number}, {"NATURE RDV", type text}, {"CLIENT ATTEND SUR PLACE", type text}, {"PIÈCE DISPONIBLE", type text}, {"VÉH. COURTOISIE", Int64.Type}, {"CONVOYAGE", Int64.Type}, {"ETAT", type text}, {"COMMENTAIRE", type text}, {"VÉHICULE ARRÊTÉ", type text}, {"INDICATEUR", type text}, {"CLIENT NON VENU", type text}, {"Receptionné", type number}, {"En cours d'intervention", type number}, {"Disponible", type any}}),
+				    #"Colonnes supprimées" = Table.RemoveColumns(#"Type modifié2",{"DATE REST.", "MARQUE", "MODÈLE", "N° RDV", "O.R.", "DURÉE INTERVENTION", "PIÈCE DISPONIBLE", "ETAT", "VÉHICULE ARRÊTÉ", "En cours d'intervention", "Disponible", "KMS", "V.I.N.", "CLIENT ATTEND SUR PLACE", "VÉH. COURTOISIE", "CONVOYAGE", "COMMENTAIRE", "CLIENT NON VENU", "Receptionné", "TÉL. CLIENT", "INTERVENTION"}),
+				    #"Duplication de la colonne" = Table.DuplicateColumn(#"Colonnes supprimées", "Date d'extraction", "Date d'extraction - Copier"),
+				    #"Type modifié1" = Table.TransformColumnTypes(#"Duplication de la colonne",{{"Date d'extraction - Copier", type text}}),
+				    #"Colonnes renommées" = Table.RenameColumns(#"Type modifié1",{{"Date d'extraction - Copier", "Date extraction  TXT"}}),
+				    #"Lignes filtrées1" = Table.SelectRows(#"Colonnes renommées", each [IMMATRICULATION] <> null and [IMMATRICULATION] <> ""),
+				    #"Personnalisée ajoutée1" = Table.AddColumn(#"Lignes filtrées1", "Clé Immat", each [IMMATRICULATION]&"-"&[CONCESSION]&"-"&[Date extraction  TXT]),
+				    #"Valeur remplacée" = Table.ReplaceValue(#"Personnalisée ajoutée1",null,"1",Replacer.ReplaceValue,{"ATELIER"}),
+				    #"Lignes filtrées3" = Table.SelectRows(#"Valeur remplacée", each true),
+				    #"Lignes filtrées" = Table.SelectRows(#"Lignes filtrées3", each true),
+				    #"Lignes filtrées2" = Table.SelectRows(#"Lignes filtrées", each true),
+				    #"Personnalisée ajoutée2" = Table.AddColumn(#"Lignes filtrées2", "Clé Atelier", each [CONCESSION]&"-"&[ATELIER]),
+				    #"Duplication de la colonne1" = Table.DuplicateColumn(#"Personnalisée ajoutée2", "DATE ARR.", "DATE ARR. - Copier"),
+				    #"Colonnes renommées1" = Table.RenameColumns(#"Duplication de la colonne1",{{"DATE ARR. - Copier", "DATE ARR. - format TXT"}}),
+				    #"Type modifié" = Table.TransformColumnTypes(#"Colonnes renommées1",{{"DATE ARR. - format TXT", type text}}),
+				    #"Personnalisée ajoutée" = Table.AddColumn(#"Type modifié", "doublon", each [Clé Immat]&[#"DATE ARR. - format TXT"]),
+				    #"Doublons supprimés" = Table.Distinct(#"Personnalisée ajoutée", {"doublon"})
+				in
+				    #"Doublons supprimés"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

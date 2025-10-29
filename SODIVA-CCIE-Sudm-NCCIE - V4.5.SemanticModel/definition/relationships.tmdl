@@ -1,0 +1,128 @@
+relationship 31aaa133-ee7f-4d7a-9d96-c08effe4ee02
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 0-Date.Date
+	toColumn: LocalDateTable_720e9c47-fb29-4b15-bd63-af5538f4dc83.Date
+
+relationship AutoDetected_4ceb4480-efcf-49ff-b0b6-9142f5880deb
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: '3-Reliquats (pièce en CDE)'.'Clé DT'
+	toColumn: 1-DT.'Clé DT'
+
+relationship f908a329-5b63-4ac9-b7c8-4ccb15769b03
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'DT sans doublon'.'Date Ouverture DT'
+	toColumn: LocalDateTable_5275ef20-67e9-4904-b4c5-e321e2fab0ea.Date
+
+relationship fbf93055-3eff-46f2-a0fb-4ce1f12dab77
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 2-Export-RDV.'DATE ARR.'
+	toColumn: LocalDateTable_dadc133d-5d32-4185-90cb-93eb238b2d16.Date
+
+relationship c850f48a-1105-41db-9191-2c8617ea358a
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 2-Export-RDV.'DATE DE CRÉATION RDV'
+	toColumn: LocalDateTable_2609a25d-4cf4-455f-8f09-ddb08dec5857.Date
+
+relationship dea6d82c-b29a-402c-99ca-c99103beb812
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'DT sans doublon'.'Date d''extraction'
+	toColumn: LocalDateTable_31b01a68-1c89-432a-bb93-1aa4adc00321.Date
+
+relationship e39f4e40-e040-48bf-92e6-82862678b846
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Export-RDV.'Date d''extraction'
+	toColumn: LocalDateTable_b95a92f6-7c4e-4a3d-906d-1d93a1e60641.Date
+
+relationship 1237bb41-cc61-4c48-8ec8-c27793d46e72
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Export-RDV.'DATE ARR.'
+	toColumn: LocalDateTable_92731ea0-f09c-4a1f-bf31-0c75a5dd9c65.Date
+
+relationship 75fe3fa1-237e-46a5-92f7-b9193a9f2b17
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Export-RDV.'DATE DE CRÉATION RDV'
+	toColumn: LocalDateTable_30dc1597-a30c-49c4-b1c4-3add830f6a85.Date
+
+relationship 6a263ecd-f3da-fba8-c9f0-9cc7728ac9ce
+	fromColumn: 2-Export-RDV.'Date d''extraction'
+	toColumn: 0-Date.Date
+
+relationship 1fb9a628-b65e-a1c2-0925-73da2bb22733
+	fromColumn: 1-DT.'Date d''extraction'
+	toColumn: 0-Date.Date
+
+relationship 844a5e1b-147b-4fa3-a8e2-e20189823dff
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 1-DT.'Date Ouverture DT'
+	toColumn: LocalDateTable_af0b8a6a-887c-4aa3-af12-0d6daf691b85.Date
+
+relationship c3c7c5df-fd77-446a-bd1c-1e0674e42743
+	joinOnDateBehavior: datePartOnly
+	fromColumn: '3-Reliquats (pièce en CDE)'.date
+	toColumn: LocalDateTable_b3d24d93-60ee-4612-8711-a7aa1ccc63c1.Date
+
+relationship 974622c9-ee15-a466-9a8f-b4e06a4d186b
+	fromColumn: 1-DT.'Clé Statut'
+	toColumn: 4-Satut.'Clé Statut'
+
+relationship 1e99e0ef-43db-72dc-1f2b-09ce7d063a71
+	fromColumn: 'DT sans doublon'.'Clé Statut'
+	toColumn: 4-Satut.'Clé Statut'
+
+relationship 376c1b13-e022-4f29-a434-95dcb36086c9
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 1-DT.'DATE de RDV'
+	toColumn: LocalDateTable_bca7dd80-9ec3-4319-a3be-b041387f7f82.Date
+
+relationship faf003c3-8ba5-4783-8753-2244daf56478
+	fromColumn: Export-RDV.'Clé Atelier'
+	toColumn: 5-Atelier.'Clé atelier'
+
+relationship 11352a9c-e6d0-411a-99be-1bded3616bc5
+	fromColumn: 2-Export-RDV.'Clé Atelier'
+	toColumn: 5-Atelier.'Clé atelier'
+
+relationship 3c9378d8-49c8-df61-4f5d-1fb99f181141
+	crossFilteringBehavior: bothDirections
+	fromColumn: 1-DT.'CCS (code)'
+	toColumn: CS.'CCS (code)'
+
+relationship 9cc8a611-25ad-29f9-a522-407dbf2d6473
+	fromColumn: CS.CONCESSION
+	toColumn: Concession.Concession
+
+relationship a17db369-0871-9508-6bf8-73e1f54e0488
+	fromColumn: 1-DT.'clé filtre'
+	toColumn: Filtre.'Clé filtre '
+
+relationship 9a415679-f6c3-010e-fc27-5ccbeb74c3cc
+	isActive: false
+	fromColumn: 'DT sans doublon'.CONCESSION
+	toColumn: Concession.Concession
+
+relationship 2e33bff0-58ec-4c92-af55-3d341d31670d
+	fromColumn: 2-Export-RDV.RÉCEPTION
+	toColumn: Meca.'RÉCEPTION Meca'
+
+relationship 2a8891f6-7439-45b8-9d5d-ed18cb856860
+	fromColumn: Meca.RÉCEPTION
+	toColumn: CS.RÉCEPTION
+
+relationship 3ee2240d-86c4-43f3-945d-e947f3f90b68
+	fromColumn: 1-DT.'Clé IMMAT'
+	toColumn: Export-RDV.'clé immat sans doublon'
+
+relationship a077c9bc-3457-41a5-b663-94451abca0cb
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: 2-Export-RDV.doublon
+	toColumn: Export-RDV.doublon
+
+relationship 4cf3196a-f5eb-54f6-099f-ac4356806b6f
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: 'DT sans doublon'.'Clé IMMAT'
+	toColumn: 2-Export-RDV.'clé immat sans doublon'
+

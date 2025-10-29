@@ -1,0 +1,100 @@
+table 4-Satut
+	lineageTag: abc2359f-327a-4851-bc4a-20cb55e15898
+
+	column CONCESSION
+		dataType: string
+		lineageTag: 30f025eb-e4f9-44b2-8246-dfe3aab3d3cb
+		summarizeBy: none
+		sourceColumn: CONCESSION
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Statut en cours'
+		dataType: string
+		lineageTag: 3babc2c1-ec3f-462d-ae73-72583a5e681b
+		summarizeBy: none
+		sourceColumn: Statut en cours
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Statut standard'
+		dataType: string
+		lineageTag: ae0e5fa3-2ab0-464d-97a0-3743f73b76bc
+		summarizeBy: none
+		sourceColumn: Statut standard
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Véhicule présent'
+		dataType: int64
+		formatString: 0
+		lineageTag: fd155fb8-790e-4c8b-a4b3-dc8891bdf8ad
+		summarizeBy: sum
+		sourceColumn: Véhicule présent
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Rdv programmé'
+		dataType: int64
+		formatString: 0
+		lineageTag: 36ddc267-de84-44a2-b7e0-e8e1ab0775ab
+		summarizeBy: sum
+		sourceColumn: Rdv programmé
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Clé Statut'
+		dataType: string
+		lineageTag: 38033ac2-0c83-4b2d-84a4-dba55bb8c709
+		summarizeBy: none
+		sourceColumn: Clé Statut
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Clé statut 2'
+		dataType: string
+		lineageTag: c9240405-809b-4728-b4e8-7c302dcddc03
+		summarizeBy: none
+		sourceColumn: Clé statut
+
+		annotation SummarizationSetBy = Automatic
+
+	column DPOK
+		dataType: int64
+		formatString: 0
+		lineageTag: 8d96afc6-916d-46eb-976c-1b89960d1808
+		summarizeBy: sum
+		sourceColumn: DPOK
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 4-Satut = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("G:\Drive partagés\Service MACS\02 - Projets & Performance\Groupe\Dash'Op\03 - PowerBI\données\Tables ref.xlsx"), null, true),
+				    Statuts_Sheet = Source{[Item="Statuts",Kind="Sheet"]}[Data],
+				    #"En-têtes promus1" = Table.PromoteHeaders(Statuts_Sheet, [PromoteAllScalars=true]),
+				    #"Type modifié1" = Table.TransformColumnTypes(#"En-têtes promus1",{{"CONCESSION", type text}, {"Statut en cours", type text}, {"Statut standard", type text}, {"Véhicule présent", Int64.Type}, {"Rdv programmé", Int64.Type}, {"Clé statut", type text}}),
+				    #"Type modifié" = Table.TransformColumnTypes(#"Type modifié1",{{"CONCESSION", type text}, {"Statut en cours", type text}, {"Statut standard", type text}, {"Véhicule présent", Int64.Type},{"DPOK", Int64.Type}, {"Rdv programmé", Int64.Type}, {"Clé statut", type text}}),
+				    #"Lignes vides supprimées" = Table.SelectRows(#"Type modifié", each not List.IsEmpty(List.RemoveMatchingItems(Record.FieldValues(_), {"", null}))),
+				    #"Personnalisée ajoutée" = Table.AddColumn(#"Lignes vides supprimées", "Clé Statut", each [CONCESSION]& "-" & [Statut en cours])
+				in
+				    #"Personnalisée ajoutée"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

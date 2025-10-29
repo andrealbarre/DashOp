@@ -1,0 +1,58 @@
+table 0-Date
+	lineageTag: 38e58dbd-9208-4e05-ac94-9878d20ec944
+
+	column Date
+		formatString: Short Date
+		lineageTag: 74890bcf-a74f-4e8e-8986-5fd5103b9390
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		variation Variation
+			isDefault
+			relationship: 31aaa133-ee7f-4d7a-9d96-c08effe4ee02
+			defaultHierarchy: LocalDateTable_720e9c47-fb29-4b15-bd63-af5538f4dc83.'Hiérarchie de dates'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Année
+		formatString: 0
+		lineageTag: f5e8c712-2837-42d8-b75e-3b44eee2f714
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Année]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Num Mois'
+		formatString: 0
+		lineageTag: eb170e71-1789-4e30-b281-226f61273c93
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Num Mois]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Mois
+		lineageTag: ef4a0eca-ffc4-4471-9f5f-d89fb0250263
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Mois]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Semaine
+		formatString: 0
+		lineageTag: 065a4969-663e-47fb-92a7-973d0176964d
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Semaine]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 0-Date = calculated
+		mode: import
+		source = ADDCOLUMNS(CALENDARAUTO(),"Année",YEAR([Date]),"Num Mois",MONTH([Date]),"Mois",FORMAT([Date],"mmmm"),"Semaine",WEEKNUM(([Date])))
+
+	annotation PBI_Id = a1a0e3db40974f1f9a4dd3c949ffb760
+

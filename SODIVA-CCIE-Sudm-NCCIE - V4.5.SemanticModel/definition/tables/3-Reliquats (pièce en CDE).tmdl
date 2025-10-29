@@ -1,0 +1,109 @@
+table '3-Reliquats (pièce en CDE)'
+	lineageTag: 13402369-984d-461a-929f-51acd7700113
+
+	column 'No DT'
+		dataType: string
+		lineageTag: a183c40b-e82c-445b-9a99-6db9140b1618
+		summarizeBy: none
+		sourceColumn: No DT
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'DATE EXTRACT FORMAT TXT'
+		dataType: string
+		lineageTag: 7e6f294a-b140-4518-92f5-6f29b2ff7760
+		summarizeBy: none
+		sourceColumn: DATE EXTRACT FORMAT TXT
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column CONCESSION
+		dataType: string
+		lineageTag: ee9f406b-5f9a-4423-acf6-986e30088e0b
+		summarizeBy: none
+		sourceColumn: CONCESSION
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Clé DT'
+		dataType: string
+		lineageTag: 64d24bb6-b5c8-4674-8dec-b082ce8d8b5f
+		summarizeBy: none
+		sourceColumn: Clé DT
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column date
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 3c13922b-aecb-4d9c-a88a-f0092cc69b3c
+		summarizeBy: none
+		sourceColumn: date
+
+		variation Variation
+			isDefault
+			relationship: c3c7c5df-fd77-446a-bd1c-1e0674e42743
+			defaultHierarchy: LocalDateTable_b3d24d93-60ee-4612-8711-a7aa1ccc63c1.'Hiérarchie de dates'
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Column20
+		dataType: string
+		lineageTag: fde832ad-774f-448d-90d1-2dd4837f8742
+		summarizeBy: none
+		sourceColumn: Column20
+
+		annotation SummarizationSetBy = Automatic
+
+	column Column21
+		dataType: string
+		lineageTag: 487e4186-d59b-4dbe-acef-4c8b37d7d714
+		summarizeBy: none
+		sourceColumn: Column21
+
+		annotation SummarizationSetBy = Automatic
+
+	column Column22
+		dataType: string
+		lineageTag: 33eb8ebc-d87a-4998-99f5-42f9c543b3a4
+		summarizeBy: none
+		sourceColumn: Column22
+
+		annotation SummarizationSetBy = Automatic
+
+	partition '3-Reliquats (pièce en CDE)' = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("G:\Drive partagés\Service MACS\02 - Projets & Performance\Groupe\Dash'Op\03 - PowerBI\données\compile - Suivi des Reliquats de Commande pour export - Copie.xlsm"), null, true),
+				    DataImport_Sheet = Source{[Item="DataImport",Kind="Sheet"]}[Data],
+				    #"En-têtes promus" = Table.PromoteHeaders(DataImport_Sheet, [PromoteAllScalars=true]),
+				    #"Colonnes supprimées" = Table.RemoveColumns(#"En-têtes promus",{"CC", "Date Document", "Document", "Référence", "Libellé", "Qté Commandée", "Qté déjà Servie", "Date Livraison", "Client (code)", "Nom Client", "Option Comptoir", "Ligne Commande", "No Cde", "Intervention", "VIN", "Fournisseur (code)"}),
+				    #"Type modifié" = Table.TransformColumnTypes(#"Colonnes supprimées",{{"date", type date}}),
+				    #"Lignes filtrées" = Table.SelectRows(#"Type modifié", each [No DT] <> null and [No DT] <> ""),
+				    #"Type modifié1" = Table.TransformColumnTypes(#"Lignes filtrées",{{"CONCESSION", type text}}),
+				    #"Duplication de la colonne" = Table.DuplicateColumn(#"Type modifié1", "date", "DATE EXTRACTION - Copier"),
+				    #"Type modifié2" = Table.TransformColumnTypes(#"Duplication de la colonne",{{"DATE EXTRACTION - Copier", type text}}),
+				    #"Colonnes renommées" = Table.RenameColumns(#"Type modifié2",{{"DATE EXTRACTION - Copier", "DATE EXTRACT FORMAT TXT"}}),
+				    #"Type modifié3" = Table.TransformColumnTypes(#"Colonnes renommées",{{"No DT", type text}}),
+				    #"Personnalisée ajoutée1" = Table.AddColumn(#"Type modifié3", "Clé DT", each [No DT]&"-"&[CONCESSION]&"-"&[DATE EXTRACT FORMAT TXT]),
+				    #"Doublons supprimés" = Table.Distinct(#"Personnalisée ajoutée1", {"Clé DT"})
+				in
+				    #"Doublons supprimés"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

@@ -1,0 +1,67 @@
+table 5-Atelier
+	lineageTag: 63f099a5-8e9b-423d-99e2-c9394f8f054a
+
+	column Concession
+		dataType: string
+		lineageTag: ca1c6394-14dd-45f4-b948-58bf3f0c7a56
+		summarizeBy: none
+		sourceColumn: Concession
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Atelier
+		dataType: string
+		lineageTag: d27c9fc5-fc02-49b3-8d63-86556184d4d4
+		summarizeBy: none
+		sourceColumn: Atelier
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Atelier standard'
+		dataType: string
+		lineageTag: 31e51b6f-cfdd-4601-9efe-1387049b0725
+		summarizeBy: none
+		sourceColumn: Atelier standard
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Clé atelier'
+		dataType: string
+		lineageTag: 9294c270-5b86-4b5a-93f2-4b4d01fb6ac2
+		summarizeBy: none
+		sourceColumn: Clé atelier
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'RDV au chrono'
+		dataType: int64
+		formatString: 0
+		lineageTag: 8ece60d5-26e2-4013-9210-9f9c45944538
+		summarizeBy: sum
+		sourceColumn: RDV au chrono
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 5-Atelier = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("G:\Drive partagés\Service MACS\02 - Projets & Performance\Groupe\Dash'Op\03 - PowerBI\données\Tables ref.xlsx"), null, true),
+				    Atelier_Sheet = Source{[Item="Atelier",Kind="Sheet"]}[Data],
+				    #"En-têtes promus2" = Table.PromoteHeaders(Atelier_Sheet, [PromoteAllScalars=true]),
+				    #"Type modifié2" = Table.TransformColumnTypes(#"En-têtes promus2",{{"Concession", type text}, {"Atelier", type any}, {"Atelier standard", type text}, {"Clé atelier", type text}}),
+				    #"Type modifié" = Table.TransformColumnTypes(#"Type modifié2",{{"Concession", type text}, {"Atelier", type any}, {"Atelier standard", type text}, {"Clé atelier", type text}}),
+				    #"Type modifié1" = Table.TransformColumnTypes(#"Type modifié",{{"Concession", type text}, {"Atelier", type any}, {"Atelier standard", type text}, {"Clé atelier", type text}, {"RDV au chrono", Int64.Type}})
+				in
+				    #"Type modifié1"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

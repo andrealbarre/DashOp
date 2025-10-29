@@ -1,0 +1,165 @@
+table 'DT sans doublon'
+	lineageTag: a5d95fc6-90b9-49d3-a43a-6af9c55e41a7
+
+	column 'No DT'
+		dataType: string
+		lineageTag: e688641d-8af4-4f10-8db6-c1e66e2b11d4
+		summarizeBy: none
+		sourceColumn: No DT
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column IMMAT
+		dataType: string
+		lineageTag: e5ab1006-15f4-4bef-b045-019ab0859c6a
+		summarizeBy: none
+		sourceColumn: IMMAT
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Date Ouverture DT'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 6ec406d7-f5f2-46c2-a46e-44618bb3371f
+		summarizeBy: none
+		sourceColumn: Date Ouverture DT
+
+		variation Variation
+			isDefault
+			relationship: f908a329-5b63-4ac9-b7c8-4ccb15769b03
+			defaultHierarchy: LocalDateTable_5275ef20-67e9-4904-b4c5-e321e2fab0ea.'Hiérarchie de dates'
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Statut en Cours'
+		dataType: string
+		lineageTag: c2f24508-8f7f-49b1-a887-42a89127a189
+		summarizeBy: none
+		sourceColumn: Statut en Cours
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'CCS (code)'
+		dataType: string
+		lineageTag: 5969e93b-c4d9-4a7e-b2ad-067c32f8bb79
+		summarizeBy: none
+		sourceColumn: CCS (code)
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column CONCESSION
+		dataType: string
+		lineageTag: e60c4989-939b-4faa-8e38-ddd2fbd00c9c
+		summarizeBy: none
+		sourceColumn: CONCESSION
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'IMMAT PROPRE'
+		dataType: string
+		lineageTag: 914bf5dc-da05-4268-b666-b4af2427e52f
+		summarizeBy: none
+		sourceColumn: IMMAT PROPRE
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'DATE EXTRAC FORMAT TXT'
+		dataType: string
+		lineageTag: beaf10a2-1011-4a28-b8b4-68fd8d41789d
+		summarizeBy: none
+		sourceColumn: DATE EXTRAC FORMAT TXT
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Clé DT'
+		dataType: string
+		lineageTag: 3fbec3dd-839a-4155-bebf-280770ea2e4d
+		summarizeBy: none
+		sourceColumn: Clé DT
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Clé IMMAT'
+		dataType: string
+		lineageTag: 7be2e98e-82f6-4b30-a018-09a82ae818fc
+		summarizeBy: none
+		sourceColumn: Clé IMMAT
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Date d''extraction'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: e304bec9-f130-4754-86a0-8e39471e1972
+		summarizeBy: none
+		sourceColumn: Date d'extraction
+
+		variation Variation
+			isDefault
+			relationship: dea6d82c-b29a-402c-99ca-c99103beb812
+			defaultHierarchy: LocalDateTable_31b01a68-1c89-432a-bb93-1aa4adc00321.'Hiérarchie de dates'
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Clé Statut'
+		dataType: string
+		lineageTag: 9b0865ae-f3d0-4eb4-89d6-dc69484d33ab
+		summarizeBy: none
+		sourceColumn: Clé Statut
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'DT sans doublon' = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("G:\Drive partagés\Service MACS\02 - Projets & Performance\Groupe\Dash'Op\03 - PowerBI\données\DT en Cours - compile.xlsm"), null, true),
+				    DataImport_Sheet = Source{[Item="DataImport",Kind="Sheet"]}[Data],
+				    #"En-têtes promus" = Table.PromoteHeaders(DataImport_Sheet, [PromoteAllScalars=true]),
+				    #"Type modifié" = Table.TransformColumnTypes(#"En-têtes promus",{{"Date d'extraction", type date}, {"Année DT", Int64.Type}, {"No DT", Int64.Type}, {"VIN", type text}, {"IMMAT", type text}, {"Date Ouverture DT", type date}, {"Client Facturé", type text}, {"Statut en Cours", type text}, {"Date Prévue Restitution", type date}, {"CCS (code)", type text}, {"Code OPB", type text}}),
+				    #"Colonnes supprimées" = Table.RemoveColumns(#"Type modifié",{"Année DT", "VIN", "Client Facturé", "Date Prévue Restitution", "Code OPB"}),
+				    #"Type modifié1" = Table.TransformColumnTypes(#"Colonnes supprimées",{{"CONCESSION", type text}}),
+				    #"Caractères supprimés insérés" = Table.AddColumn(#"Type modifié1", "IMMAT PROPRE", each Text.Remove([IMMAT], {"-"}), type text),
+				    #"Duplication de la colonne" = Table.DuplicateColumn(#"Caractères supprimés insérés", "Date d'extraction", "Date extraction - Copier"),
+				    #"Type modifié2" = Table.TransformColumnTypes(#"Duplication de la colonne",{{"Date extraction - Copier", type text}}),
+				    #"Colonnes renommées" = Table.RenameColumns(#"Type modifié2",{{"Date extraction - Copier", "DATE EXTRAC FORMAT TXT"}}),
+				    #"Type modifié3" = Table.TransformColumnTypes(#"Colonnes renommées",{{"No DT", type text}}),
+				    #"Personnalisée ajoutée1" = Table.AddColumn(#"Type modifié3", "Clé DT", each [No DT]&"-"&[CONCESSION]&"-"&[DATE EXTRAC FORMAT TXT]),
+				    #"Personnalisée ajoutée2" = Table.AddColumn(#"Personnalisée ajoutée1", "Clé IMMAT", each [IMMAT PROPRE]&"-"&[CONCESSION]&"-"&[DATE EXTRAC FORMAT TXT]),
+				    #"Valeur remplacée" = Table.ReplaceValue(#"Personnalisée ajoutée2",null,"Sans statut",Replacer.ReplaceValue,{"Statut en Cours"}),
+				    #"Lignes filtrées" = Table.SelectRows(#"Valeur remplacée", each [Clé IMMAT] <> null and [Clé IMMAT] <> ""),
+				    #"Doublons supprimés" = Table.Distinct(#"Lignes filtrées", {"Clé IMMAT"}),
+				    #"Personnalisée ajoutée" = Table.AddColumn(#"Doublons supprimés", "Clé Statut", each [CONCESSION]&"-"&[Statut en Cours])
+				in
+				    #"Personnalisée ajoutée"
+
+	annotation PBI_ResultType = Table
+
